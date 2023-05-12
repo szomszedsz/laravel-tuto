@@ -10,6 +10,7 @@ services:
     depends_on:
       - php
   php:
+    user: "www" # insert either uid or name of the user
     build:
       context: .
       dockerfile: ./.docker/php/Dockerfile
