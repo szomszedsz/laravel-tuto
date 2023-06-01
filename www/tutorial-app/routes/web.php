@@ -57,6 +57,29 @@ Route::controller(OrderController::class)->group(function () {
     Route::post('/orders', 'store');
 })->name('order');
 
+
+//Views
+//// Rendering view and template inharitence 
+Route::get('/home',function(){
+    return view('home.index',[]);
+})->name('home.index');
+ 
+//// passing parameters to view
+Route::get('/posts/{id}', function (int $id) {
+     $posts = [
+        1 => [
+            'title' => 'Title of the first post',
+            'content' => 'Content of the first post'
+        ],
+        2 => [
+            'title' => 'Title of the 2nd post',
+            'content' => 'Content of the 2nd post'
+        ]
+
+     ];
+    return view('posts.index', ['post' => $posts[$id]]);
+})->name('posts.index');
+
 Route::fallback(function () {
     echo "404";
 });
